@@ -1,6 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<h1> Welcome to my Book Store</h1>
 
-<h2> It is currently a work in progress but I will get it up and running here soon. :) </h2>
+
+<div>
+    <div class="col-9">
+        @foreach (var x in Model.Books)
+        {
+            <partial name="ProjectSummary" model="x" />
+        }
+    </div>
+</div>
+
+<div page-blah="@Model.PageInfo" page-action="Index" page-class="btn" page-classes-enabled=true
+     page-class-normal="btn-outline-dark" page-class-selected="btn-primary"></div>

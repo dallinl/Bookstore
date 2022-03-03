@@ -18,26 +18,53 @@ namespace Bookstore.Controllers
             context = bsc;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
+
+        //[HttpGet]
+        //public IActionResult BookList(int pageNum = 1)
+        //{
+        //    int pageSize = 10;
+
+        //    var x = new ProjectsViewModel
+        //    {
+        //        Books = context.Books
+        //        .OrderBy(x => x.Title)
+        //        .Skip((pageNum - 1) * pageSize)
+        //        .Take(pageSize),
+
+        //        PageInfo = new PageInfo
+        //        {
+        //            TotalNumProjects = context.Books.Count(),
+        //            ProjectsPerPage = pageSize,
+        //            CurrentPage = pageNum
+        //        }
+        //    };
+
+        //    return View(x);
+
+        //}
 
         [HttpGet]
-        public IActionResult BookList (int pageNum = 1)
+        public IActionResult Index (string categoryType, int pageNum = 1)
         {
             int pageSize = 10;
 
             var x = new ProjectsViewModel
             {
                 Books = context.Books
+                .Where(x => x.Category == categoryType || categoryType == null)
                 .OrderBy(x => x.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumProjects = context.Books.Count(),
+                    TotalNumProjects = (categoryType == null
+                        ? context.Books.Count()
+                        : context.Books.Where(x => x.Category == categoryType).Count()),
                     ProjectsPerPage = pageSize,
                     CurrentPage = pageNum
                 }

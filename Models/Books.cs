@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Bookstore.Models
 {
-    public partial class Books
+    public class Books
     {
         [Required]
         public long BookId { get; set; }
