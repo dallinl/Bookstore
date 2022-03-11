@@ -10,17 +10,12 @@
 
 </head>
 <body>
-    <div class="row">
-        <a class="col navbar-brand" href="#">Book Store</a>
-        <div class="col-4 text-right">
-            @await Component.InvokeAsync("CartSummary")
-        </div>
-    </div>
     <div class="bg-dark text-white p-2">
-        <span class="navbar-collapse m-lg-2"> Welcome to the Book List </span>
+        <h2 class="text-lg-left">Book Store</h2>
+            @await Component.InvokeAsync("CartSummary")
     </div>
 
-    <div class="row m-1 p-1">
+    <div class="row m-2 p-2">
         <div id="categories" class="col-3">
             <vc:Category> </vc:Category>
         </div>

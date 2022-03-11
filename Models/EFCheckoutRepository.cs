@@ -16,7 +16,7 @@ namespace Bookstore.Models
 
         public IQueryable<Checkout> Checkout => context.Checkout.Include(x => x.Lines).ThenInclude(x => x.Books);
 
-        IQueryable<Checkout> ICheckoutRepository.Checkout { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        //IQueryable<Checkout> ICheckoutRepository.Checkout { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void SaveCheckout(Checkout checkout)
         {

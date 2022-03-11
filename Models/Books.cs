@@ -10,6 +10,7 @@ namespace Bookstore.Models
 {
     public class Books
     {
+        [Key]
         [Required]
         public long BookId { get; set; }
         [Required]

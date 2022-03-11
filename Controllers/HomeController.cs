@@ -18,33 +18,21 @@ namespace Bookstore.Controllers
             context = bsc;
         }
 
-        //public IActionResult Index()
+        //public void SaveBook(Books book)
         //{
-        //    return View();
+        //    context.SaveChanges();
         //}
 
-        //[HttpGet]
-        //public IActionResult BookList(int pageNum = 1)
+        //public void CreateBook(Books book)
         //{
-        //    int pageSize = 10;
+        //    context.Add(book);
+        //    context.SaveChanges();
+        //}
 
-        //    var x = new ProjectsViewModel
-        //    {
-        //        Books = context.Books
-        //        .OrderBy(x => x.Title)
-        //        .Skip((pageNum - 1) * pageSize)
-        //        .Take(pageSize),
-
-        //        PageInfo = new PageInfo
-        //        {
-        //            TotalNumProjects = context.Books.Count(),
-        //            ProjectsPerPage = pageSize,
-        //            CurrentPage = pageNum
-        //        }
-        //    };
-
-        //    return View(x);
-
+        //public void DeleteBook(Books book)
+        //{
+        //    context.Remove(book);
+        //    context.SaveChanges();
         //}
 
         [HttpGet]

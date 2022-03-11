@@ -17,6 +17,11 @@ namespace Bookstore.Controllers
             basket = b;
         }
 
+        //public void SaveBook(Books b);
+        //public void CreateBook(Books b);
+        //public void DeletBook(Books b);
+
+
         [HttpGet]
         public IActionResult Checkout()
         {
@@ -47,5 +52,7 @@ namespace Bookstore.Controllers
             }
 
         }
+
+
     }
 }
