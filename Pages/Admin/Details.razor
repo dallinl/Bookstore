@@ -23,7 +23,7 @@
 @code {
 
     [Inject]
-    public BookstoreContext repo { get; set; }
+    public IBookstoreRepository repo { get; set; }
 
     [Parameter]
     public long Id { get; set; }

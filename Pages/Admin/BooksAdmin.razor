@@ -1,6 +1,6 @@
 ﻿@page "/admin/books"
 @page "/admin"
-@inherits OwningComponentBase<BookstoreContext>
+@inherits OwningComponentBase<IBookstoreRepository>
 
 
 <h3><span title="This is a collection of all the books we have.">Books</span></h3>
@@ -57,7 +57,7 @@
 
 @code {
 
-    public BookstoreContext repo => Service;
+    public IBookstoreRepository repo => Service;
     public IEnumerable<Books> BookData { get; set; }
 
     protected async override Task OnInitializedAsync()
@@ -76,7 +76,7 @@
 
     public async Task RemoveBook (Books b)
     {
-        //repo.DeleteBook(b);
+        repo.DeleteBook(b);
         await UpdateData();
     }
 

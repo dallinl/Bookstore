@@ -12,28 +12,12 @@ namespace Bookstore.Controllers
 {
     public class HomeController : Controller
     {
-        private BookstoreContext context { get; set; }
-        public HomeController(BookstoreContext bsc)
+
+        private IBookstoreRepository repo;
+        public HomeController (IBookstoreRepository temp)
         {
-            context = bsc;
+            repo = temp;
         }
-
-        //public void SaveBook(Books book)
-        //{
-        //    context.SaveChanges();
-        //}
-
-        //public void CreateBook(Books book)
-        //{
-        //    context.Add(book);
-        //    context.SaveChanges();
-        //}
-
-        //public void DeleteBook(Books book)
-        //{
-        //    context.Remove(book);
-        //    context.SaveChanges();
-        //}
 
         [HttpGet]
         public IActionResult Index (string categoryType, int pageNum = 1)
@@ -42,7 +26,7 @@ namespace Bookstore.Controllers
 
             var x = new ProjectsViewModel
             {
-                Books = context.Books
+                Books = repo.Books
                 .Where(x => x.Category == categoryType || categoryType == null)
                 .OrderBy(x => x.Title)
                 .Skip((pageNum - 1) * pageSize)
@@ -51,8 +35,8 @@ namespace Bookstore.Controllers
                 PageInfo = new PageInfo
                 {
                     TotalNumProjects = (categoryType == null
-                        ? context.Books.Count()
-                        : context.Books.Where(x => x.Category == categoryType).Count()),
+                        ? repo.Books.Count()
+                        : repo.Books.Where(x => x.Category == categoryType).Count()),
                     ProjectsPerPage = pageSize,
                     CurrentPage = pageNum
                 }

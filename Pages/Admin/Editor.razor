@@ -1,6 +1,6 @@
 ﻿@page "/admin/books/edit/{id:long}"
 @page "/admin/books/create"
-@inherits OwningComponentBase<BookstoreContext>
+@inherits OwningComponentBase<IBookstoreRepository>
 
 <style>
     div.validation-message {color: rgb(52 143 208); font-weight:500}
@@ -78,11 +78,10 @@
     public string ThemeColor => Id == 0 ? "primary" : "warning";
 
     public string PageAction => Id == 0 ? "Create" : "Edit";
-
-    //public ICheckoutRepository repo => Service;
+ 
     public Books b { get; set; } = new Books();
 
-    public BookstoreContext repo => Service;
+    public IBookstoreRepository repo => Service;
 
     protected override void OnParametersSet()
     {
@@ -94,14 +93,14 @@
 
     public void SaveBook()
     {
-        //if (Id == 0)
-        //{
-        //    repo.CreateBook(b);
-        //}
-        //else
-        //{
-        //    repo.SaveBook(b);
-        //}
+        if (Id == 0)
+        {
+            repo.CreateBook(b);
+        }
+        else
+        {
+            repo.SaveBook(b);
+        }
 
         NavManager.NavigateTo("/admin/books");
     }
