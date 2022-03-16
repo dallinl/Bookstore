@@ -42,7 +42,7 @@ namespace Bookstore.Migrations
 
             modelBuilder.Entity("Bookstore.Models.Books", b =>
                 {
-                    b.Property<long>("BookId")
+                    b.Property<long>("BookId") 
                         .HasColumnName("BookID")
                         .HasColumnType("INTEGER");
 

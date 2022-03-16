@@ -4,57 +4,60 @@
 
 
 <h3><span title="This is a collection of all the books we have.">Books</span></h3>
+<body>
+    <table class="table table-sm table-striped table-bordered table-hover table-responsive-md">
 
-<table class="table table-sm table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th><span title="This is ID of the book in our system.">Book ID</span></th>
+                <th><span title="This is full title of the book.">Book Title</span></th>
+                <th><span title="This is the main author who wrote the book.">Author</span></th>
+            </tr>
+        </thead>
 
-    <thead>
-        <tr>
-            <th><span title="This is ID of the book in our system.">Book ID</span></th>
-            <th><span title="This is full title of the book.">Book Title</span></th>
-            <th><span title="This is the main author who wrote the book.">Author</span></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @if (BookData?.Count() > 0)
-        {
-            @foreach (Books b in BookData)
+        <tbody>
+            @if (BookData?.Count() > 0)
             {
-                <tr>
-                    <td>@b.BookId</td>
-                    <td>@b.Title</td>
-                    <td>@b.Author</td>
+                @foreach (Books b in BookData)
+                {
+                    <tr>
+                        <td>@b.BookId</td>
+                        <td>@b.Title</td>
+                        <td>@b.Author</td>
 
-                    @* Create button for Details*@
-                    <td>
-                        <NavLink class="btn btn-info btn-sm" href="@GetDetailsUrl(b.BookId)">Details</NavLink>
-                    </td>
-                    @* Create button for Editing*@
-                    <td>
-                        <NavLink class="btn btn-warning btn-sm" href="@GetEditUrl(b.BookId)">Edit</NavLink>
-                    </td>
-                    @* Create button for Deleting a book*@
-                    <td>
-                        <button class="btn btn-danger btn-sm" @onclick="@(x=>RemoveBook(b))"> Delete </button>
-                    </td>
-                </tr>
+                        @* Create button for Details*@
+                        <td>
+                            <NavLink class="btn btn-info btn-sm" href="@GetDetailsUrl(b.BookId)">Details</NavLink>
+                        </td>
+                        @* Create button for Editing*@
+                        <td>
+                            <NavLink class="btn btn-warning btn-sm" href="@GetEditUrl(b.BookId)">Edit</NavLink>
+                        </td>
+                        @* Create button for Deleting a book*@
+                        <td>
+                            <button class="btn btn-danger btn-sm" @onclick="@(x=>RemoveBook(b))"> Delete </button>
+                        </td>
+                    </tr>
+                }
             }
-        }
-         else
+            else
             {
                 <tr>
                     <td colspan="5" class="text-center">No Books Here :(</td>
                 </tr>
             }
 
-    </tbody>
-    
-
-</table>
-
-<NavLink class="btn btn-primary" href="/admin/books/create">Create</NavLink>
+        </tbody>
 
 
+    </table>
+
+    <NavLink class="btn btn-primary" href="/admin/books/create">Create</NavLink>
+
+    <br />
+
+
+</body>
 @code {
 
     public IBookstoreRepository repo => Service;
@@ -74,11 +77,10 @@
 
     public string GetEditUrl(long id) => $"/admin/books/edit/{id}";
 
-    public async Task RemoveBook (Books b)
+    public async Task RemoveBook(Books b)
     {
         repo.DeleteBook(b);
         await UpdateData();
     }
-
 
 }

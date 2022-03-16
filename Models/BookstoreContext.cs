@@ -23,11 +23,7 @@ namespace Bookstore.Models
         public DbSet<Checkout> Checkout { get; set; }
 
 
-        //public void SaveBook(Books b)
-        //{
-        //    context.Add(b);
-        //    BookstoreContext.SaveChanges();
-        //}
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

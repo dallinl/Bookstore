@@ -17,23 +17,23 @@
     </thead>
 
     <tbody>
-        @foreach(var b in Model.basket.Items)
-            {
-                <tr>
-                    <td>@b.Books.Title</td>
-                    <td>@b.Quantity</td>
-                    <td>@((b.Books.Price).ToString("c"))</td>
-                    <td>@((b.Quantity * b.Books.Price).ToString("c"))</td>
+        @foreach (var b in Model.basket.Items)
+        {
+            <tr>
+                <td>@b.Books.Title</td>
+                <td>@b.Quantity</td>
+                <td>@((b.Books.Price).ToString("c"))</td>
+                <td>@((b.Quantity * b.Books.Price).ToString("c"))</td>
 
-                    <td class="text-center">
-                        <form method="post" asp-page-handler="Remove">
-                            <input type="hidden" name="bookId" value="@b.Books.BookId"/>
-                            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl"/>
-                            <button type="submit" class="btn btn-small btn-danger">Remove </button>
-                        </form> 
-                    </td>
-                </tr>
-            }
+                <td class="text-center">
+                    <form method="post" asp-page-handler="Remove">
+                        <input type="hidden" name="bookId" value="@b.Books.BookId" />
+                        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                        <button type="submit" class="btn btn-small btn-danger">Remove </button>
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
 
     <tfooter>
@@ -41,7 +41,7 @@
             <td class="font-weight-bolder" colspan="3">Total</td>
             <td class="font-weight-bolder">@Model.basket.CalculateTotal().ToString("c")</td>
         </tr>
-        
+
     </tfooter>
 
 </table>
@@ -50,3 +50,9 @@
     <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
     <a class="btn btn-primary" asp-controller="Checkout" asp-action="Checkout">Checkout</a>
 </div>
+
+<br /> <br />
+
+<h4> Couldn't find the book you wanted? Search for it on Google!</h4>
+<script async src="https://cse.google.com/cse.js?cx=b34457061a8faebf1"></script>
+<div class="gcse-search">   </div>
